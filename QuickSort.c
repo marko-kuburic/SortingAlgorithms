@@ -7,25 +7,25 @@ void swap(int * i, int * j)
     *i = *j;
     *j = temp;
 }
-int partition(int arr[], int first, int last){
-        int pivot = arr[last];
-        int wall = (first - 1);
+int partition(int arr[], int firstIdx, int lastIdx){
+        int pivot = arr[lastIdx];
+        int wall = (firstIdx - 1);
         int i;
-        for(i = first; i <= last - 1; i++){
+        for(i = firstIdx; i <= lastIdx - 1; i++){
             if(arr[i] <= pivot){
                 wall++;
                 swap(&arr[wall], &arr[i]);
             }
         }
-        swap(&arr[wall+1], &arr[last]);
+        swap(&arr[wall+1], &arr[lastIdx]);
         return (wall + 1);
 }
-void quickSort(int arr[], int first, int last)
+void quickSort(int arr[], int firstIdx, int lastIdx)
 {
-    if(first < last){
-        int wall = partition(arr, first, last);
-        quickSort(arr, first, wall - 1);
-        quickSort(arr, wall + 1, last);
+    if(firstIdx < lastIdx){
+        int wall = partition(arr, firstIdx, lastIdx);
+        quickSort(arr, firstIdx, wall - 1);
+        quickSort(arr, wall + 1, lastIdx);
 
     }
 }
