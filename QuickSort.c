@@ -12,9 +12,9 @@ int partition(int arr[], int firstIdx, int lastIdx)
         int pivot = arr[lastIdx];
         int wall = (firstIdx - 1);
         int i;
-        for(i = firstIdx; i <= lastIdx - 1; i++)
+        for (i = firstIdx; i <= lastIdx - 1; i++)
         {
-            if(arr[i] <= pivot)
+            if (arr[i] <= pivot)
             {
                 wall++;
                 swap(&arr[wall], &arr[i]);
@@ -25,7 +25,7 @@ int partition(int arr[], int firstIdx, int lastIdx)
 }
 void quickSort(int arr[], int firstIdx, int lastIdx)
 {
-    if(firstIdx < lastIdx)
+    if (firstIdx < lastIdx)
     {
         int wall = partition(arr, firstIdx, lastIdx);
         quickSort(arr, firstIdx, wall - 1);
@@ -38,14 +38,14 @@ int main()
     printf("Enter the lenght of array: ");
     scanf("%d", &n);
     int arr[n];
-    for(i = 0; i < n; i++)
+    for (i = 0; i < n; i++)
     {
         printf("\nEnter the value of %d. element: ", i);
         scanf("%d", &arr[i]);
     }
 
     quickSort(arr, 0, n-1);
-    for(i = 0; i < n; i++)
+    for (i = 0; i < n; i++)
     {
         printf("%d", arr[i]);
     }
