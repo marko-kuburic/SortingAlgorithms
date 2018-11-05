@@ -7,29 +7,41 @@ void swap(int * i, int * j)
     *i = *j;
     *j = temp;
 }
-int partition(int arr[], int firstIdx, int lastIdx)
+void readData(int arr[], int n)
 {
-        int pivot = arr[lastIdx];
-        int wall = (firstIdx - 1);
+    for (int i = 0; i < n;i++)
+    {
+        printf("\nEnter the value of %d. element: ", i);
+        scanf("%d", &arr[i]);
+    }
+}
+int partition(int arr[], int first, int last){
+        int pivot = arr[last];
+        int wall = (first - 1);
         int i;
-        for (i = firstIdx; i <= lastIdx - 1; i++)
-        {
-            if (arr[i] <= pivot)
-            {
+        for(i = first; i <= last - 1; i++){
+            if(arr[i] <= pivot){
                 wall++;
                 swap(&arr[wall], &arr[i]);
             }
         }
-        swap(&arr[wall+1], &arr[lastIdx]);
+        swap(&arr[wall+1], &arr[last]);
         return (wall + 1);
 }
-void quickSort(int arr[], int firstIdx, int lastIdx)
+void quickSort(int arr[], int first, int last)
 {
-    if (firstIdx < lastIdx)
+    if(first < last){
+        int wall = partition(arr, first, last);
+        quickSort(arr, first, wall - 1);
+        quickSort(arr, wall + 1, last);
+
+    }
+}
+void displayData(int arr[], int n)
+{
+    for (int i = 0; i < n; i++)
     {
-        int wall = partition(arr, firstIdx, lastIdx);
-        quickSort(arr, firstIdx, wall - 1);
-        quickSort(arr, wall + 1, lastIdx);
+        printf("%d", arr[i]);
     }
 }
 int main()
@@ -38,17 +50,9 @@ int main()
     printf("Enter the lenght of array: ");
     scanf("%d", &n);
     int arr[n];
-    for (i = 0; i < n; i++)
-    {
-        printf("\nEnter the value of %d. element: ", i);
-        scanf("%d", &arr[i]);
-    }
-
+    readData(arr, n);
     quickSort(arr, 0, n-1);
-    for (i = 0; i < n; i++)
-    {
-        printf("%d", arr[i]);
-    }
+    displayData(arr, n);
 
     return 0;
 }
